@@ -4,7 +4,15 @@ import { Hono } from 'hono'
 const app = new Hono()
 
 app.get('/', (c) => {
-  return c.text('Hello Hono!')
+  return c.text('Payment service is up and running!')
+})
+
+app.get('/health', (c) => {
+  return c.json({
+    status: 'OK',
+    uptime: process.uptime(),
+    timestamp: Date.now()
+  })
 })
 
 const start = async () => {
