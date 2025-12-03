@@ -1,7 +1,9 @@
+import { clerkMiddleware, getAuth } from '@hono/clerk-auth'
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 
 const app = new Hono()
+app.use('*', clerkMiddleware())
 
 app.get('/', (c) => {
   return c.text('Payment service is up and running!')
