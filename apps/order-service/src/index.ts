@@ -1,6 +1,9 @@
 import Fastify from "fastify"
+import { clerkPlugin } from '@clerk/fastify'
 
 const fastify = Fastify()
+
+fastify.register(clerkPlugin)
 
 fastify.get('/', async (request, reply) => {
   return reply.send('Order Service is up and running!');
