@@ -1,11 +1,12 @@
 import Fastify from "fastify"
 import { clerkPlugin } from '@clerk/fastify'
+import { shouldBeUser } from "./middleware/authMiddleware"
 
 const fastify = Fastify()
 
 fastify.register(clerkPlugin)
 
-fastify.get('/', async (request, reply) => {
+fastify.get('/',{ preHandler: shouldBeUser }, async (request, reply) => {
   return reply.send('Order Service is up and running!');
 })
 
