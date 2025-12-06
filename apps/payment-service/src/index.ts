@@ -1,4 +1,4 @@
-import { clerkMiddleware, getAuth } from '@hono/clerk-auth'
+import { clerkMiddleware } from '@hono/clerk-auth'
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 
