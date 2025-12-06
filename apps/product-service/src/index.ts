@@ -1,6 +1,7 @@
 import exress, { Request, Response } from 'express';
 import cors from "cors"
 import { clerkMiddleware, getAuth } from '@clerk/express'
+import { shouldBeUser } from './middleware/authMiddleware.js';
 
 const app = exress();
 app.use(cors({
@@ -11,9 +12,9 @@ app.use(cors({
 
 app.use(clerkMiddleware())
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/', shouldBeUser, (req: Request, res: Response) => {
   const auth = getAuth(req);
-  console.log('User ID:', auth.userId);
+  console.log('User ID:', req.userId);
   res.send('Product service is up and running!');
 });
 
